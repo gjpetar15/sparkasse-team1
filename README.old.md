@@ -1,1 +1,0 @@
-# sparkasse-team1
