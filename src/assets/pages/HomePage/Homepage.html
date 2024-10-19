@@ -23,57 +23,145 @@
     <script type="module" src="/src/main.tsx"></script>
 
     <!-- Header -->
-    <header>
+    <header class="position-fixed container-fluid">
       <!-- Nav Bar -->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Почетна</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Курсеви</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">VibeOn Edu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Шпаркасе Банка</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Контакт</a>
-              </li>
-            </ul>
-            <!-- Right side buttons -->
-            <div class="d-flex">
-              <a href="#" class="btn btn-outline-primary me-2">Регистрација</a>
-              <a href="#" class="btn btn-primary">Најава</a>
+       <div class="container-nav">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <!-- Left side logo -->
+                <a class="navbar-brand ms-5" href="#">
+                    <img src="..\..\\Images\\VibeOn_NewLogo.svg" alt="Logo" class="logo">
+                </a>
+                <!-- Toggler for small screens -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                    <!-- Centered Menu -->
+                     <div class="nav-position">
+                        <ul class="navbar-nav header-nav">
+                            <li class="nav-item me-5">
+                                <a class="nav-link active" aria-current="page" href="#">Почетна</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Курсеви</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">VibeOn Edu</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Шпаркасе Банка</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Контакт</a>
+                            </li>
+                        </ul>
+                     </div>
+                    
+                    <!-- Right side buttons -->
+                    <div class="d-flex ms-auto">
+                        <a href="#" class="btn btn-style-primary btn-dark me-5 ps-4 pe-4 btn-signup">
+                            Регистрација
+                            <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                        </a>
+                        <a href="#" class="btn btn-style-primary me-5 btn-dark ps-4 pe-4">
+                            Најава
+                            <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </nav>
+        </nav>
+    </div>
 
       <!-- Include Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </header>
 
     <!-- Main Body -->
-    <main></main>
+    <main>
+<section class="background-hp d-flex">
+    <div class="bg-orange">
+        <div class="container d-flex justify-content-center hero-section-left">
+            <div class="card text-left">
+                <div class="card-body">
+                  <h1 class="card-title">Развивај паметни финансиски вештини.</h1>
+                  <p class="card-text">Прва и единствена платформа за финансиска едукација на млади на Sparkasse Bank.nt.</p>
+                  <a href="#" class="btn btn-primary">Започни сега
+                    <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                  </a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="bg-teal">
+        <div class="hero-section-right d-flex justify-content-center">
+            <img src="..\..\\Images\\HeroSection_illustration.png">
+        </div>
+    </div>
+</section>
+
+    </main>
 
     <!-- Footer -->
-    <footer></footer>
+    <footer>
+
+        <div class="footer-line">
+            <!-- Black line -->
+        </div>
+        <!-- Footer is similar to the nav bar -->
+
+        <!-- Nav Bar -->
+       <div class="container-nav">
+        <nav class="navbar navbar-expand-lg footer-nav">
+            <div class="container-fluid">
+                <!-- Left side logo -->
+                <a class="navbar-brand ms-5" href="#">
+                    <img src="..\..\\Images\\VibeOn_NewLogo.svg" alt="Logo" class="logo">
+                </a>
+                </button>
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                    <!-- Centered Menu -->
+                     <div class="nav-position">
+                        <ul class="navbar-nav footer-nav-ul">
+                            <li class="nav-item me-5">
+                                <a class="nav-link" aria-current="page" href="#">Контакт</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">ЧПП</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Политика за приватност</a>
+                            </li>
+                        </ul>
+                     </div>
+                    
+                    <!-- Right side buttons -->
+                    <div class="d-flex ms-auto">
+                        <a href="#" class="me-5">
+                            <img src="..\..\\Images\\Sparkasse_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-1">
+                            <img src="..\..\\Images\\LinkedIn_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-1">
+                            <img src="..\..\\Images\\Instagram_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-5">
+                            <img src="..\..\\Images\\Facebook_logo.svg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="botom-link d-flex justify-content-center">
+<a href="#">
+    &copy VibeOnEdu
+</a>
+    </div>
+    </footer>
   </body>
 </html>
