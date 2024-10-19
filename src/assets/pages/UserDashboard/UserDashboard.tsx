@@ -5,7 +5,7 @@ import WelcomeSection from "../../components/WelcomeSection/WelcomeSection";
 const UserDashboard = () => {
   return (
     <div className="min-h-dvh w-vw">
-        <div className="mb-20">
+        <div>
             <UserHeader />
         </div>
         <div className="flex">

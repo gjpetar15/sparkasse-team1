@@ -1,4 +1,10 @@
 import { NavLink } from "react-router-dom";
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 const UserSidePanel = () => {
   return (
@@ -18,32 +24,64 @@ const UserSidePanel = () => {
                     isActive && "bg-[#E4EAF0]"
                 }`
                 }>
-                    <img src="/src/assets/images/UserSidePanelNav/MainPanel.svg" className="text-[15px] me-[14px]"/>
-                    <span>Главен панел</span>
+                {({ isActive }) => (
+                    <>
+                    <DashboardOutlinedIcon 
+                        fontSize="medium" 
+                        className={`me-[14px]`} 
+                        sx={{ color: isActive ? '#2870ED' : '#A2B6C9' }}
+                    />
+                        <span>Главен панел</span>
+                    </>
+                )}
                 </NavLink>
                 <NavLink to="/user-dashboard/my-profile" className={({ isActive }) =>
                 `text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0] ${
                     isActive && "bg-[#E4EAF0]"
                 }`
                 }>
-                    <img src="/src/assets/images/UserSidePanelNav/MyProfile.svg" className="text-[15px] me-[14px]" />
-                    <span>Мој профил</span>
+                {({ isActive }) => (
+                    <>
+                    <PersonOutlineOutlinedIcon 
+                        fontSize="medium" 
+                        className={`me-[14px]`} 
+                        sx={{ color: isActive ? '#2870ED' : '#A2B6C9' }}
+                    />
+                        <span>Мој профил</span>
+                    </>
+                )}
                 </NavLink>
                 <NavLink to="/user-dashboard/courses" className={({ isActive }) =>
                 `text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0] ${
                     isActive && "bg-[#E4EAF0]"
                 }`
                 }>
-                    <img src="/src/assets/images/UserSidePanelNav/Courses.svg" className="text-[15px] me-[14px]" />
-                    <span>Курсеви</span>
+                {({ isActive }) => (
+                    <>
+                    <FormatListBulletedOutlinedIcon 
+                        fontSize="medium" 
+                        className={`me-[14px]`} 
+                        sx={{ color: isActive ? '#2870ED' : '#A2B6C9' }}
+                    />
+                        <span>Курсеви</span>
+                    </>
+                )}
                 </NavLink>
                 <NavLink to="/user-dashboard/piggy-bank" className={({ isActive }) =>
                 `text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0] ${
                     isActive && "bg-[#E4EAF0]"
                 }`
                 }>
-                    <img src="/src/assets/images/UserSidePanelNav/PiggyBank.svg" className="text-[15px] me-[14px]" />
-                    <span>Штедомедар</span>
+                {({ isActive }) => (
+                    <>
+                    <SavingsOutlinedIcon 
+                        fontSize="medium" 
+                        className={`me-[14px]`} 
+                        sx={{ color: isActive ? '#2870ED' : '#A2B6C9' }}
+                    />
+                        <span>Штедомедар</span>
+                    </>
+                )}
                 </NavLink>
             </div>
             <div className="absolute bottom-0">
@@ -52,11 +90,11 @@ const UserSidePanel = () => {
                     isActive && "bg-[#E4EAF0]"
                 }`
                 }>
-                    <img src="/src/assets/images/UserSidePanelNav/Feedback.svg" className="text-[15px] me-[14px]" />
+                    <FeedbackOutlinedIcon fontSize="medium" className="me-[14px]" sx={{ color: '#A2B6C9' }} />
                     <span>Фидбек</span>
                 </NavLink>
                 <button className="text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0]">
-                    <img src="/src/assets/images/UserSidePanelNav/Logout.svg" className="text-[15px] me-[14px]" />
+                    <LogoutOutlinedIcon fontSize="medium" className="me-[14px]" sx={{ color: '#A2B6C9' }} />
                     <span>Одјави се</span>
                 </button>
             </div>

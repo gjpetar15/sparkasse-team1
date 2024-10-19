@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SingleCourseDashboardProgressCard from '../SingleCourseDashboardProgressCard/SingleCourseDashboardProgressCard';
+import Button from '@mui/material/Button';
+import CourseCard from '../CourseCard/CourseCard';
 
 const WelcomeSection = () => {
     const [isReturningUser, setIsReturningUser] = useState(true);
+    const [startedCourse, setStartedCourse] = useState<any>(null);
+    const [recommendedCourses, setRecommendedCourses] = useState<any>([]);
+
     const defaultUser = {
         first_name: "Томи",
         last_name: "Андреев",
@@ -11,11 +16,53 @@ const WelcomeSection = () => {
 
     const dummyCourse = {
         name: "Лична финансиска гимнастика",
-        short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција."
+        short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
+        total_lectures: 6,
+        passed_lectures: 2,
+        average_read_time_hours: 3,
+        average_read_time_minutes: 35
     };
+
+    const dummyCourses = [
+        {
+            name: "Лична финансиска гимнастика",
+            short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
+            total_lectures: 6,
+            passed_lectures: 2,
+            average_read_time_hours: 3,
+            average_read_time_minutes: 35,
+            explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
+            end_date: null
+        },
+        {
+            name: "Лична финансиска гимнастика",
+            short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
+            total_lectures: 6,
+            passed_lectures: 2,
+            average_read_time_hours: 3,
+            average_read_time_minutes: 35,
+            explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
+            end_date: null
+        },
+        {
+            name: "Лична финансиска гимнастика",
+            short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
+            total_lectures: 6,
+            passed_lectures: 2,
+            average_read_time_hours: 3,
+            average_read_time_minutes: 35,
+            explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
+            end_date: null
+        }
+    ];
 
     const storedUser = localStorage.getItem('user');
     const user = storedUser ? JSON.parse(storedUser) : defaultUser;
+
+    useEffect(() => {
+        // setStartedCourse(dummyCourse);
+        setRecommendedCourses(dummyCourses);
+    }, []);
 
     return (
         <div className="mt-14 w-full bg-[#F1F5F7] rounded-xl p-10">
@@ -40,7 +87,37 @@ const WelcomeSection = () => {
                     </div>
                 </div>
             </div>
-            <SingleCourseDashboardProgressCard course={dummyCourse} />
+            {
+                startedCourse 
+                    ? <SingleCourseDashboardProgressCard course={startedCourse} />
+                    : (
+                        <>
+                            <p className="text-2xl font-medium mb-6">Препорачано за тебе:</p>
+                            <div className='w-full grid grid-cols-3 gap-[50px]'>
+                                {recommendedCourses.map((course: any, index: number) => (
+                                    <CourseCard course={course} key={index} />
+                                ))}
+                            </div>
+                        </>
+                    )
+            }
+            <div className='flex items-center justify-center'>
+                <Button 
+                    className='flex items-center justify-center'
+                    sx={{
+                        backgroundColor: '#FF6130',
+                        color: '#FFFFFF',
+                        textTransform: 'none',
+                        padding: '8px 24px',
+                        borderRadius: '8px',
+                        marginTop: '20px'
+                    }}
+                >
+                    <span className='me-2'>Разгледај повеќе</span>
+                    <img src="/src/assets/images/ButtonArrow.svg" alt="" />
+                </Button>
+            </div>
+
         </div>
     );
 }
