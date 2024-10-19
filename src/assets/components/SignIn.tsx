@@ -11,7 +11,10 @@ return (
             <p className="text-center mb-6 text-lg text-white">Продолжи да вајбаш!</p>
             <form>
                 <div className="mb-4">
+                    <label htmlFor="email"></label>
                     <input
+                        name='email'
+                        onChange={(e) => console.log("property: ", e.target.name, "value: ", e.target.value)}
                         type="text"
                         placeholder="Email"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -20,7 +23,9 @@ return (
                 </div>
                 <div className="mb-4">
                     <input
-                        type="text"
+                        type="password"
+                        name="password"
+                        onChange={(e) => console.log("property: ", e.target.name, "value: ", e.target.value)}
                         placeholder="lozinka"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                         required
@@ -34,7 +39,7 @@ return (
                 </button>
             </form>
             <div className="text-center mt-4">
-                <p className="text-gray-500 mb-2 text-white">или</p>
+                <p className=" mb-2 text-white">или</p>
                 <div className="flex justify-center gap-4">
                                      
                 <Link to="https://www.facebook.com">
@@ -50,6 +55,8 @@ return (
         </div>
     </div>
 );
+
 };
 
 export default SignIn;
+
