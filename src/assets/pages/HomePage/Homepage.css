@@ -361,7 +361,17 @@ text-align: center;
     display: flex; /* Flexbox for the card */
     align-items: center; /* Center items vertically */
   }
-  
+
+  /* Single card banner */
+
+.single-card-header{
+font-family: Inter;
+font-size: 40px;
+font-weight: 700;
+line-height: 56px;
+text-align: left;
+color: #ffffff;
+}
 
 /* Footer */
 /* Footer Nav */
