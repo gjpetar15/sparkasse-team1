@@ -1,23 +1,21 @@
 import { useState } from "react";
 import CustomButtons from "./CustomButtons";
 
-
-type FormData = {
-  userName: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  city: string;
-  birthDate: string;
-  phoneNumber: string;
-  password: string;
-  interests: string[];
-  studyTime: string;
-};
-
 const MultiStepRegistration = () => {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<{
+    userName: string;
+    lastName: string;
+    email: string;
+    gender: string;
+    city: string;
+    birthDate: string;
+    phoneNumber: string;
+    password: string;
+    confirmPassword: string;
+    interests: string[];
+    studyTime: string;
+  }>({
     userName: "",
     lastName: "",
     email: "",
@@ -26,13 +24,18 @@ const MultiStepRegistration = () => {
     birthDate: "",
     phoneNumber: "",
     password: "",
+    confirmPassword: "",
     interests: [],
     studyTime: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const onButtonClick = (e: any) => {
+  const handleNextClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setStep((prevState) => prevState + 1);
+    if (validateStep()) {
+      setErrorMessage("");
+      setStep((prevState) => prevState + 1);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,295 +46,326 @@ const MultiStepRegistration = () => {
     }));
   };
 
-  if (step === 1) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-blue-600">
-        <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-          <div className="flex justify-center mb-4">
-            <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-          </div>
-          <h1 className="text-center mb-6 text-lg text-white font-bold">Учи денес, добивај утре!</h1>
-          <p className="text-center mb-6 text-lg text-white">Продолжи да вајбаш!</p>
-          <form>
-            <div className="mb-4">
-              <input
-                type="text"
-                name="userName"
-                placeholder="User Name"
-                onChange={handleChange}
-                value={formData.userName}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                required
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                onChange={handleChange}
-                value={formData.lastName}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                required
-              />
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                value={formData.email}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                required
-              />
-              <CustomButtons
-                name="foo"
-                type="submit"
-                onButtonClick={onButtonClick}
-                className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-    );
-  }
+  const handleFinalSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // Move to step 6 instead of showing an alert only
+    setStep((prevState) => prevState + 1);
+  };
 
-  if (step === 2) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-blue-600">
-        <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-          <div className="flex justify-center mb-4">
-            <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-          </div>
-          <h1 className="text-center mb-6 text-lg text-white font-bold">Учи денес, добивај утре!</h1>
-          <p className="text-center mb-6 text-lg text-white">Продолжи да вајбаш!</p>
-          <form>
-            <div className="mb-4">
-              <input
-                type="text"
-                name="gender"
-                placeholder="Пол"
-                onChange={handleChange}
-                value={formData.gender}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <input
-                type="text"
-                name="city"
-                placeholder="Град"
-                onChange={handleChange}
-                value={formData.city}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <input
-                type="date"
-                name="birthDate"
-                placeholder="Датум на раѓање"
-                onChange={handleChange}
-                value={formData.birthDate}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <input
-                type="tel"
-                name="phoneNumber"
-                placeholder="Телефонски број"
-                onChange={handleChange}
-                value={formData.phoneNumber}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Лозинка"
-                onChange={handleChange}
-                value={formData.password}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Повтори лозинка"
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-              />
-              <CustomButtons
-                name="foo"
-                type="button"
-                onButtonClick={onButtonClick}
-                className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
-    );
-  }
+  const validateStep = () => {
+    switch (step) {
+      case 1:
+        if (!formData.userName || !formData.lastName || !formData.email) {
+          setErrorMessage("All fields are required.");
+          return false;
+        }
+        if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          setErrorMessage("Please enter a valid email address.");
+          return false;
+        }
+        break;
+      case 2:
+        if (
+          !formData.gender ||
+          !formData.city ||
+          !formData.birthDate ||
+          !formData.phoneNumber ||
+          !formData.password ||
+          !formData.confirmPassword
+        ) {
+          setErrorMessage("All fields are required.");
+          return false;
+        }
+        if (formData.password !== formData.confirmPassword) {
+          setErrorMessage("Passwords do not match.");
+          return false;
+        }
+        break;
+      default:
+        break;
+    }
+    return true;
+  };
 
-  if (step === 3) {
-    const { userName } = formData;
-    return (
-      <div className="flex justify-center items-center h-screen bg-blue-600">
-        <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-          <div className="flex justify-center mb-4">
-            <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-          </div>
-          <h1 className="text-center mb-6 text-lg text-white font-bold">Добредојде, {userName}!</h1>
-          <p className="text-center mb-6 text-lg text-white">Продолжи и избери финансиски теми за кои сакаш да дознаеш повеќе!</p>
-          <CustomButtons
-            name="foo"
-            type="button"
-            onButtonClick={onButtonClick}
-            className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+  const progressPercentage = (step / 6) * 100;
+
+  const handleInterestClick = (interest: string) => {
+    setFormData((prevFormData) => {
+      const currentInterests = prevFormData.interests;
+      const newInterests = currentInterests.includes(interest)
+        ? currentInterests.filter((i) => i !== interest)
+        : [...currentInterests, interest];
+      return {
+        ...prevFormData,
+        interests: newInterests,
+      };
+    });
+  };
+
+  const handleStudyTimeChange = (selectedTime: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      studyTime: selectedTime,
+    }));
+  };
+
+  // Function to get the button text based on the current step
+  const getButtonText = () => {
+    switch (step) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return "Продолжи";
+      case 5:
+        return "Најави се";
+      case 6:
+        return "Продолжи кон својот профил";
+      default:
+        return "Продолжи";
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-blue-600">
+      <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
+        <div className="flex justify-center mb-4">
+          <img
+            src="src/assets/images/LOGO.png"
+            alt="Logo"
+            className="w-24 h-24"
           />
         </div>
-      </div>
-    );
-  }
-
-  if (step === 4) {
-    if (step === 4) {
-        // Assuming these are the interest topics that a user can choose from
-        const interestOptions = [
-            "Бизнис",
-            "Финансии",
-            "Буџетирање",
-            "Претприемништво",
-            "Инвестирање",
-            "Штедење",
-            "Продажба",
-        ];
-    
-        const handleInterestClick = (interest: string) => {
-            setFormData((prevFormData) => {
-                const currentInterests = prevFormData.interests;
-                // If interest is already selected, remove it, otherwise add it
-                const newInterests = currentInterests.includes(interest)
-                    ? currentInterests.filter((i) => i !== interest)
-                    : [...currentInterests, interest];
-                return {
-                    ...prevFormData,
-                    interests: newInterests,
-                };
-            });
-        };
-    
-        return (
-            <div className="flex justify-center items-center h-screen bg-blue-600">
-                <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-                    <div className="flex justify-center mb-4">
-                        <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-                    </div>
-                    <h1 className="text-center mb-6 text-lg text-white font-bold">
-                        Одбери 3 теми на кои имаш најмногу интерес:
-                    </h1>
-                    <div className="grid grid-cols-2 gap-2 mb-4">
-                        {interestOptions.map((interest) => (
-                            <button
-                                key={interest}
-                                onClick={() => handleInterestClick(interest)}
-                                className={`px-4 py-2 rounded-lg border ${
-                                    formData.interests.includes(interest) ? "bg-orange-500 text-white" : "bg-white text-orange-500"
-                                }`}
-                            >
-                                {interest}
-                            </button>
-                        ))}
-                    </div>
-                    <CustomButtons
-                        name="foo"
-                        type="button"
-                        onButtonClick={onButtonClick}
-                        className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-                    />
-                </div>
-            </div>
-        );
-    }
-    
-  }
-
-  if (step === 5)
-  {
-
-    if (step === 5) {
-        // Define the study time options available
-        const studyTimeOptions = [
-            "10-20 минути",
-            "30 минути",
-            "45 минути",
-            "1 час"
-        ];
-    
-        const handleStudyTimeChange = (selectedTime: string) => {
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                studyTime: selectedTime,
-            }));
-        };
-    
-        return (
-            <div className="flex justify-center items-center h-screen bg-blue-600">
-                <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-                    <div className="flex justify-center mb-4">
-                        <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-                    </div>
-                    <h1 className="text-center mb-6 text-lg text-white font-bold">
-                        И последно, колку време планираш да посветиш на учење?
-                    </h1>
-                    <div className="grid grid-cols-1 gap-4 mb-6">
-                        {studyTimeOptions.map((option) => (
-                            <label
-                                key={option}
-                                className={`flex items-center space-x-3 cursor-pointer p-2 rounded-lg border ${
-                                    formData.studyTime === option ? "bg-orange-500 text-white" : "bg-white text-orange-500"
-                                }`}
-                            >
-                                <input
-                                    type="radio"
-                                    name="studyTime"
-                                    value={option}
-                                    checked={formData.studyTime === option}
-                                    onChange={() => handleStudyTimeChange(option)}
-                                    className="form-radio text-orange-500"
-                                />
-                                <span>{option}</span>
-                            </label>
-                        ))}
-                    </div>
-                    <CustomButtons
-                        name="foo"
-                        type="button"
-                        onButtonClick={onButtonClick}
-                        className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-                    />
-                </div>
-            </div>
-        );
-    }
-  }
-
-  if (step === 6) {
-    return (
-        <div className="flex justify-center items-center h-screen bg-blue-600">
-            <div className="bg-transparent p-8 rounded-lg shadow-md max-w-md w-full">
-                <div className="flex justify-center mb-4">
-                    <img src="src/assets/images/LOGO.png" alt="Logo" className="w-24 h-24" />
-                </div>
-                <h1 className="text-center mb-6 text-lg text-white font-bold">
-                    Сега е време да го освоиш светот!
-                </h1>
-                <CustomButtons
-                    name="foo"
-                    type="button"
-                    onButtonClick={() => alert("Redirecting to profile...")} // Placeholder action for redirection
-                    className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-                  
-                />
-            </div>
+        <div className="w-full bg-gray-300 rounded-full h-2 mb-6">
+          <div
+            style={{ width: `${progressPercentage}%` }}
+            className="bg-[#F97316] h-full rounded-full transition-all duration-300"
+          ></div>
         </div>
-    );
-}
+        {errorMessage && (
+          <div className="bg-red-500 text-white p-2 mb-4 rounded">
+            {errorMessage}
+          </div>
+        )}
+        {step === 1 && (
+          <form>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              Учи денес, добивај утре!
+            </h1>
+            <p className="text-center mb-6 text-lg text-white">
+              Започни да вајбаш!
+            </p>
+            <input
+              type="text"
+              name="userName"
+              placeholder="Име"
+              onChange={handleChange}
+              value={formData.userName}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Презиме"
+              onChange={handleChange}
+              value={formData.lastName}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Mаил Адреса"
+              onChange={handleChange}
+              value={formData.email}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <CustomButtons
+              name={getButtonText()}
+              type="submit"
+              onButtonClick={handleNextClick}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </form>
+        )}
+        {step === 2 && (
+          <form>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              Ти остана уште малку!
+            </h1>
+            <p className="text-center mb-6 text-lg text-white">
+              Продолжи да вајбаш!
+            </p>
+            <input
+              type="text"
+              name="gender"
+              placeholder="Пол"
+              onChange={handleChange}
+              value={formData.gender}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="text"
+              name="city"
+              placeholder="Град"
+              onChange={handleChange}
+              value={formData.city}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="date"
+              name="birthDate"
+              onChange={handleChange}
+              value={formData.birthDate}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="tel"
+              name="phoneNumber"
+              placeholder="Телефонски број"
+              onChange={handleChange}
+              value={formData.phoneNumber}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Лозинка"
+              onChange={handleChange}
+              value={formData.password}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Повтори лозинка"
+              onChange={handleChange}
+              value={formData.confirmPassword}
+              className="w-full px-4 py-2 mb-2 border border-gray-300 rounded-lg"
+              required
+            />
+            <CustomButtons
+              name={getButtonText()}
+              type="submit"
+              onButtonClick={handleNextClick}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </form>
+        )}
+        {step === 3 && (
+          <div>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              Добредојде, {formData.userName}!
+            </h1>
+            <p className="text-center mb-6 text-lg text-white">
+              Продолжи и избери финансиски теми за кои сакаш да дознаеш повеќе!
+            </p>
+            <CustomButtons
+              name={getButtonText()}
+              type="button"
+              onButtonClick={handleNextClick}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </div>
+        )}
+        {step === 4 && (
+          <div>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              Одбери 3 теми на кои имаш најмногу интерес:
+            </h1>
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {[
+                "Бизнис",
+                "Финансии",
+                "Буџетирање",
+                "Штедење",
+                "Претприемништво",
+                "Инвестирање",
+              ].map((interest) => (
+                <button
+                  key={interest}
+                  onClick={() => handleInterestClick(interest)}
+                  className={`px-4 py-2 rounded-lg border ${
+                    formData.interests.includes(interest)
+                      ? "bg-orange-500 text-white"
+                      : "bg-white text-orange-500"
+                  }`}
+                >
+                  {interest}
+                </button>
+              ))}
+            </div>
+            <CustomButtons
+              name={getButtonText()}
+              type="button"
+              onButtonClick={handleNextClick}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </div>
+        )}
+        {step === 5 && (
+          <div>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              И последно, колку време планираш да посветиш на учење?
+            </h1>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              {["10-20 минути", "30 минути", "45 минути", "1 час"].map(
+                (time) => (
+                  <label
+                    key={time}
+                    className="flex items-center space-x-2 cursor-pointer p-2 text-white"
+                  >
+                    <input
+                      type="radio"
+                      name="studyTime"
+                      value={time}
+                      checked={formData.studyTime === time}
+                      onChange={() => handleStudyTimeChange(time)}
+                      className="form-radio text-white"
+                    />
+                    <span
+                      className={`text-white ${
+                        formData.studyTime === time ? "font-bold" : ""
+                      }`}
+                    >
+                      {time}
+                    </span>
+                  </label>
+                )
+              )}
+            </div>
+            <CustomButtons
+              name={getButtonText()}
+              type="button"
+              onButtonClick={handleFinalSubmit}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </div>
+        )}
 
-
-
-  };
+        {step === 6 && (
+          <div>
+            <h1 className="text-center mb-6 text-lg text-white font-bold">
+              Сега е време да го освоиш светот!
+            </h1>
+            <CustomButtons
+              name={getButtonText()}
+              type="button"
+              onButtonClick={() => alert("Redirecting to profile...")}
+              className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default MultiStepRegistration;
