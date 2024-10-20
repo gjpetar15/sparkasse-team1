@@ -34,7 +34,7 @@ const GridSectionHomepage = () => {
         <div className="bg-transparent p-4 flex flex-col justify-between col-span-2">
           <span className="text-blue-700 text-6xl font-bold">3.</span>
           <div>
-            <h2 className="text-blue-700 text-2xl font-bold leading-[38.73px] pt-[30%]">Освој го светот!</h2>
+            <h2 className="text-blue-700 text-2xl font-bold leading-[38.73px] pt-[25%]">Освој го светот!</h2>
             <p className="text-blue-700 text-base leading-6">Со сето знаење што ќе го стекнеш и сите сертификати кои ќе ги добиеш бесплатно, ќе бидеш подготвен/а да го освоиш светот!</p>
           </div>
         </div>
