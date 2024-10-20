@@ -3,6 +3,8 @@ import SingleCourseDashboardProgressCard from '../SingleCourseDashboardProgressC
 import Button from '@mui/material/Button';
 import CourseCard from '../CourseCard/CourseCard';
 import CircularProgress from '@mui/material/CircularProgress';
+import { API_URL } from '../../../constants.js';
+
 const WelcomeSection = (props: any) => {
     const { user } = props;
 
@@ -65,7 +67,7 @@ const WelcomeSection = (props: any) => {
         } else {
             const fetchData = async () => {
                 try {
-                  const response = await fetch("https://3bf7-31-11-74-166.ngrok-free.app/api/courses", {
+                  const response = await fetch(`${API_URL}/courses`, {
                       method: "GET",
                       headers: {
                           "Content-Type": "application/json",

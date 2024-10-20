@@ -4,10 +4,15 @@ import UserStats from "../../components/UserStats/UserStats";
 import WelcomeSection from "../../components/WelcomeSection/WelcomeSection";
 import DashboardInfoCard from "../../components/DashboardInfoCard/DashboardInfoCard";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../../constants";
+import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
     const [user, setUser] = useState<any>(null);
     const [loaded, setLoaded] = useState(false);
+
+    const { userId }= useParams();
+
     const infoCards = [
             {
                 title: "Планирај ја твојата патека на учење",
@@ -37,7 +42,7 @@ const UserDashboard = () => {
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await fetch("https://3bf7-31-11-74-166.ngrok-free.app/api/users/3", {
+                    const response = await fetch(`${API_URL}/users/${userId}`, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/json",
@@ -48,6 +53,7 @@ const UserDashboard = () => {
         
                     const responseData = (await response.json()).data;
                     setUser(responseData);
+                    console.log(responseData);
                 } catch (error) {
                     setUser("Failed to fetch course details");
                 } finally {
@@ -56,7 +62,7 @@ const UserDashboard = () => {
             };
         
             fetchData();
-          }, []);
+          }, [userId]);
 
     return (
         <div className="min-h-dvh w-vw">

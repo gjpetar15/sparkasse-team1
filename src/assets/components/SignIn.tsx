@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { API_URL } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -14,7 +18,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       // Tuka Fetch na sign in api
-      const response = await fetch("https://3bf7-31-11-74-166.ngrok-free.app/api/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +52,8 @@ const SignIn = () => {
       // }
 
       const data = await response.json();
-      console.log("Success: ", data.token);
+      console.log("Success: ", data);
+      navigate(`/user-dashboard/main-panel/${data.userid}`);
       // You can handle successful sign-in here, like saving a token or redirecting
     } catch (error) {
       console.error("Error signing in: ", error);

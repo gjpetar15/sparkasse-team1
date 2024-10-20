@@ -21,7 +21,7 @@ const UserHeader = (props: any) => {
             />
             <div>
                 <p className="text-[14px] font-bold">{user.name || "Име Презиме"}</p>
-                <p className="text-[10px] font-medium">{user.lastAchievedBadge.name || ""}</p>
+                <p className="text-[10px] font-medium">{user.lastAchievedBadge?.name ?? ""}</p>
             </div>
         </div>
       </div>

@@ -5,8 +5,16 @@ import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBullet
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useNavigate } from "react-router-dom";
 
 const UserSidePanel = () => {
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    navigate(`/signin`);
+  };
+
   return (
     <div className="bg-[#F1F5F7] h-[calc(100vh-140px)] w-[373px] mt-14 rounded-r-xl pt-10 px-6 sticky top-12 mr-8">
       <div className="flex flex-col items-center">
@@ -93,7 +101,7 @@ const UserSidePanel = () => {
                     <FeedbackOutlinedIcon fontSize="medium" className="me-[14px]" sx={{ color: '#A2B6C9' }} />
                     <span>Фидбек</span>
                 </NavLink>
-                <button className="text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0]">
+                <button onClick={logout} className="text-[14px] text-[#2870ED] rounded-xl px-[18px] font-normal mb-6 flex items-center h-12 hover:bg-[#E4EAF0]">
                     <LogoutOutlinedIcon fontSize="medium" className="me-[14px]" sx={{ color: '#A2B6C9' }} />
                     <span>Одјави се</span>
                 </button>

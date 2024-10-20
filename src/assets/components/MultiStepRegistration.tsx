@@ -1,8 +1,16 @@
 import { useState } from "react";
 import CustomButtons from "./CustomButtons";
 import { API_URL } from "../../constants";
+import { useNavigate } from "react-router-dom";
 
 const MultiStepRegistration = () => {
+  const navigate = useNavigate();
+
+  const goToUserDashboard = () => {
+    navigate(`/user-dashboard/main-panel${registeredUser.id}`);
+  };
+
+  const [registeredUser, setRegisteredUser] = useState<any>();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<{
     userName: string;
