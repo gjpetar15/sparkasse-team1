@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Link to Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="Homepage.css" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>VibeOn - Homepage</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Header -->
+    <header class="container-fluid">
+      <!-- Nav Bar -->
+       <div class="container-nav">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <!-- Left side logo -->
+                <a class="navbar-brand ms-5" href="#">
+                    <img src="..\..\\Images\\VibeOn_NewLogo.svg" alt="Logo" class="logo">
+                </a>
+                <!-- Toggler for small screens -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                    <!-- Centered Menu -->
+                     <div class="nav-position">
+                        <ul class="navbar-nav header-nav">
+                            <li class="nav-item me-5">
+                                <a class="nav-link active" aria-current="page" href="#">Почетна</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Курсеви</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">VibeOn Edu</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Шпаркасе Банка</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Контакт</a>
+                            </li>
+                        </ul>
+                     </div>
+                    
+                    <!-- Right side buttons -->
+                    <div class="d-flex ms-auto">
+                        <a href="#" class="btn btn-style-primary btn-dark me-5 ps-4 pe-4 btn-signup">
+                            Регистрација
+                            <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                        </a>
+                        <a href="#" class="btn btn-style-primary me-5 btn-dark ps-4 pe-4">
+                            Најава
+                            <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+      <!-- Include Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </header>
+
+    <!-- Main Body -->
+    <main>
+        <!-- Hero Page -->
+<section class="background-hp d-flex">
+    <div class="bg-orange">
+        <div class="scratch-design">
+            <img src="..\..\\Images\\Scratch_desin.svg">
+        </div>
+        <div class="container d-flex justify-content-center hero-section-left">
+            <div class="card text-left">
+                <div class="card-body">
+                  <h1 class="card-title">Развивај паметни финансиски вештини.</h1>
+                  <p class="card-text">Прва и единствена платформа за финансиска едукација на млади на Sparkasse Bank.</p>
+                  <a href="#" class="btn btn-primary">Започни сега
+                    <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow">
+                  </a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="bg-teal">
+        <div class="hero-section-right d-flex justify-content-center">
+            <img src="..\..\\Images\\HeroSection_illustration.png">
+        </div>
+    </div>
+</section>
+
+<!-- Grid Cards -->
+<section>
+    <div class="h-100 bg-image d-grid grid-template">
+        <!-- Purple Card (1st position) -->
+        <div class="bg-purple p-4 d-flex flex-column justify-content-between"></div>
+    
+        <!-- Orange Card (2nd position) -->
+        <div class="bg-orange-card p-4 d-flex flex-column justify-content-between">
+            <span class="text-white display-3 fw-bold">1.</span>
+            <div>
+                <h2 class="h2-style h2-card-white">Научи да раководиш со своите финансии</h2>
+                <p class="para-style para-style-orange">Освој ги техниките за управување со твоите лични финансии.</p>
+            </div>
+        </div>
+    
+         <!-- Second Text Card (spanning 1 column) -->
+    <div class="bg-transparent p-4 d-flex flex-column justify-content-between">
+        <span class="text-primary display-3 fw-bold">2.</span>
+        <div>
+            <h2 class="h2-card-blue h2-style">Започни да го планираш својот бизнис</h2>
+            <p class="para-style para-style-blue">Учи од најдобрите и добиј практични вештини за поставување на твојот стартап.</p>
+        </div>
+    </div>
+    
+        <!-- Third Text Card (spanning two columns) -->
+        <div class="bg-transparent p-4 d-flex flex-column justify-content-between grid-span-2">
+            <span class="text-primary display-3 fw-bold">3.</span>
+            <div>
+                <h2 class="h2-card-blue h2-style">Освој го светот!</h2>
+                <p class="para-style para-style-blue">Со сето знаење што ќе го стекнеш и сите сертификати кои ќе ги добиеш бесплатно, ќе бидеш подготвен/а да го освоиш светот!</p>
+            </div>
+        </div>
+    
+        <!-- Teal Image Card (rotated SVG) -->
+        <div class="bg-teal-card p-4 d-flex flex-column justify-content-end">
+            <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow" class="rotated-svg">
+        </div>
+    
+        <!-- Empty Card (spanning vertically across 2 rows) -->
+         <!-- Add the grid illustration later -->
+    <div class="empty-space grid-span-vertical"></div>
+    </div>      
+</section>
+
+<!-- Branka i Goran -->
+<section>
+    <div class="d-flex align-items-center" style="height: 66vh; background-color: #02A3A4;">
+        <div class="container d-flex flex-wrap justify-content-center align-items-center">
+          
+          <!-- Image on the left -->
+          <div class="col-md-4 text-left pe-5">
+            <img src="..\..\\Images\\BrankaiGordan.png" alt="Branka i Gordan" class="img-fluid rounded-lg">
+          </div>
+          
+          <!-- Text card on the right -->
+          <div class="col-md-8 d-flex align-items-center">
+            <div class="text-white">
+              <p class="mb-4 branka-par">
+                Запознај ги <b>Бранка и Гордан</b> – твоите водичи низ оваа платформа.
+                Тие ќе ти помогнат да го совладаш светот на финансиите на брз и лесен начин, и да го фатиш вајбот! Еве како изгледа процесот тука!
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+</section>
+
+<!-- Courses -->
+
+<section>
+
+    <div class="container mt-3 mb-3">
+        <div class="text-center course-header">
+            <h2>
+                Разгледај ги нашите курсеви.
+            </h2>
+        </div>
+
+        <div class="row" style="margin-bottom: 10%">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="card" style="border: 4px solid #028661; border-radius: 8px;">
+                <div class="bg-green text-white" style="padding: 0.5rem; margin: 0;">
+                  <h5 class="card-title course-card-h5 mb-0 p-2">НАУЧИ ЗА СЕБЕ.</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text course-card-p green-card-text pt-3 pb-3">
+                    Овој модул ви помага брзо и лесно да ги совладате основните вештини за лични финансии и управување со пари.
+                  </p>
+                  <a href="#" class="btn" style="background-color: #028661; color: white;">Прочитај повеќе
+                    <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow" class="ms-1">
+                  </a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-sm-6">
+              <div class="card" style="border: 4px solid #721c7a; border-radius: 8px;">
+                <div class="bg-purple text-white" style="padding: 0.5rem; margin: 0;">
+                  <h5 class="card-title course-card-h5 mb-0 p-2">НАУЧИ ЗА СВОЈОТ БИЗНИС.</h5>
+                </div>
+                <div class="card-body">
+                  <p class="card-text course-card-p purple-card-text pt-3 pb-3">
+                    Овој модул ви нуди практични знаења за градење и проширување на вашиот бизнис преку брзи лекции.
+                  </p>
+                  <a href="#" class="btn" style="background-color: #721c7a; color: white;">Види курс
+                    <img src="..\..\\Images\\Arrow_right.svg" alt="Arrow" class="ms-1">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+
+</section>
+
+<!-- Icons banner -->
+<section>
+    <div class="bg-orange-card" style="width: 100%; padding: 3% 0% 2% 0%;">
+      <div class="container" style="max-width: 80vw; margin: auto;"> <!-- Set max-width to 80% of viewport width -->
+        <div class="row justify-content-center"> <!-- Centering the row -->
+  
+          <!-- First Icon Card -->
+          <div class="col-6 col-md-3 mb-3 d-flex flex-column align-items-center justify-content-end">
+            <div class="icon justify-content-center">
+              <img src="..\..\\Images\\Informiraj-se-icon.svg" alt="Informiraj se" class="ms-1" style="max-height: 100px;"> 
+            </div>
+            <div class="icon-title text-center text-white mt-2">
+              <p class="mb-0">Информирај се.</p>
+            </div>
+          </div>
+  
+          <!-- Second Icon Card -->
+          <div class="col-6 col-md-3 mb-3 d-flex flex-column align-items-center justify-content-end">
+            <div class="icon justify-content-center">
+              <img src="..\..\\Images\\Zapochni-da-uchish-icon.svg" alt="Zapochni da uchish" class="ms-1" style="max-height: 100px;"> 
+            </div>
+            <div class="icon-title text-center text-white mt-2">
+              <p class="mb-0">Започни да учиш.</p>
+            </div>
+          </div>
+  
+          <!-- Third Icon Card -->
+          <div class="col-6 col-md-3 mb-3 d-flex flex-column align-items-center justify-content-end">
+            <div class="icon justify-content-center">
+              <img src="..\..\\Images\\Besplatni-sertifikati-icon.svg" alt="Besplatni sertifikati" class="ms-1" style="max-height: 100px;"> 
+            </div>
+            <div class="icon-title text-center text-white mt-2">
+              <p class="mb-0">Добивај бесплатни сертификати.</p>
+            </div>
+          </div>
+  
+          <!-- Fourth Icon Card -->
+          <div class="col-6 col-md-3 mb-3 d-flex flex-column align-items-center justify-content-end">
+            <div class="icon justify-content-center">
+              <img src="..\..\\Images\\Bedzovi-icon.svg" alt="Bedzovi" class="ms-1" style="max-height: 100px;"> 
+            </div>
+            <div class="icon-title text-center text-white mt-2">
+              <p class="mb-0">Добивај беџови.</p>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+  
+ <!-- Numbers banner -->
+ <section style="padding: 7% 0 7% 0;">
+    <div class="container" style="max-width: 80vw; margin: auto;">
+      <div class="row justify-content-center g-4"> <!-- Center columns -->
+  
+        <!-- First Statistic Card -->
+        <div class="col-6 col-md-4 mb-3 d-flex flex-column align-items-start mx-auto"> <!-- Center card in column -->
+          <div class="statistic-card d-flex flex-column align-items-start p-3">
+            <div class="d-flex align-items-center mb-2">
+              <div class="rectangle mb-0 me-2"></div> <!-- Orange rectangle -->
+              <h2 class="custom-h2 mb-0">157K</h2> <!-- Custom styled blue number -->
+            </div>
+            <div class="icon-title text-success mt-1">
+              <p class="custom-paragraph mb-0">Млади на возраст од 18-25 години.</p> <!-- Custom styled green text -->
+            </div>
+          </div>
+        </div>
+  
+        <!-- Second Statistic Card -->
+        <div class="col-6 col-md-4 mb-3 d-flex flex-column align-items-start mx-auto"> <!-- Center card in column -->
+          <div class="statistic-card d-flex flex-column align-items-start p-3">
+            <div class="d-flex align-items-center mb-2">
+              <div class="rectangle mb-0 me-2"></div> <!-- Orange rectangle -->
+              <h2 class="custom-h2 mb-0">40%</h2> <!-- Custom styled blue number -->
+            </div>
+            <div class="icon-title text-success mt-1">
+              <p class="custom-paragraph mb-0">Од нив се студенти</p> <!-- Custom styled green text -->
+            </div>
+          </div>
+        </div>
+  
+        <!-- Third Statistic Card -->
+        <div class="col-6 col-md-4 mb-3 d-flex flex-column align-items-start mx-auto"> <!-- Center card in column -->
+          <div class="statistic-card d-flex flex-column align-items-start p-3">
+            <div class="d-flex align-items-center mb-2">
+              <div class="rectangle mb-0 me-2"></div> <!-- Orange rectangle -->
+              <h2 class="custom-h2 mb-0">10%</h2> <!-- Custom styled blue number -->
+            </div>
+            <div class="icon-title text-success mt-1">
+              <p class="custom-paragraph mb-0">Од нив се студенти претприемачи</p> <!-- Custom styled green text -->
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+   
+  <!-- Single card banner -->
+  <section class="bg-teal-card" style="padding: 5% 0;"> <!-- Moved padding to section -->
+    <div class="d-flex flex-column align-items-center">
+      <h2 class="single-card-header text-center mb-4">
+        Земи го твоето место меѓу овие 10%!
+      </h2>
+      <a href="#" class="btn" style="background-color: #721c7a; color: white; display: inline-flex; align-items: center;">
+        Започни сега
+        <img src="..\..\Images\Arrow_right.svg" alt="Arrow" class="ms-1">
+      </a> <!-- Closing tag added -->
+    </div>
+  </section>
+
+   <!-- Messages -->
+    <section>
+
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-line">
+            <!-- Black line -->
+        </div>
+        <!-- Footer is similar to the nav bar -->
+
+        <!-- Nav Bar -->
+       <div class="container-nav">
+        <nav class="navbar navbar-expand-lg footer-nav">
+            <div class="container-fluid">
+                <!-- Left side logo -->
+                <a class="navbar-brand ms-5" href="#">
+                    <img src="..\..\\Images\\VibeOn_NewLogo.svg" alt="Logo" class="logo">
+                </a>
+                </button>
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                    <!-- Centered Menu -->
+                     <div class="nav-position">
+                        <ul class="navbar-nav footer-nav-ul">
+                            <li class="nav-item me-5">
+                                <a class="nav-link" aria-current="page" href="#">Контакт</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">ЧПП</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a class="nav-link" href="#">Политика за приватност</a>
+                            </li>
+                        </ul>
+                     </div>
+                    
+                    <!-- Right side buttons -->
+                    <div class="d-flex ms-auto">
+                        <a href="#" class="me-5">
+                            <img src="..\..\\Images\\Sparkasse_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-1">
+                            <img src="..\..\\Images\\LinkedIn_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-1">
+                            <img src="..\..\\Images\\Instagram_logo.svg">
+                        </a>
+                        <a href="#" class="me-2 me-5">
+                            <img src="..\..\\Images\\Facebook_logo.svg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="botom-link d-flex justify-content-center">
+<a href="#">
+    &copy VibeOnEdu
+</a>
+    </div>
+    </footer>
+  </body>
+</html>
