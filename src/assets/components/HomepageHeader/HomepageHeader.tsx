@@ -2,8 +2,19 @@ import Button from '@mui/material/Button';
 import logo from '/src/assets/Images/VibeOn_NewLogo.svg'; // Update the path as necessary
 import arrow from '/src/assets/Images/Arrow_right.svg'; // Update the path as necessary
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const HomepageHeader = () => {
+  const navigate = useNavigate();
+
+  const handleRegisterButtonClick = () => {
+    navigate('/registration');
+  };
+
+  const handleLoginButtonClick = () => {
+    navigate('/signin');
+  };
+
   return (
     <header className="absolute w-full flex justify-center">
       <div className="w-full px-20 mt-8"> {/* Use px-20 directly to match hero section */}
@@ -37,6 +48,7 @@ const HomepageHeader = () => {
             {/* Right side buttons */}
             <div className="flex space-x-5 mr-10">
               <Button
+                onClick={handleRegisterButtonClick}
                 sx={{
                   backgroundColor: "#FF6130",
                   display: 'flex',
@@ -56,6 +68,7 @@ const HomepageHeader = () => {
                 <img src={arrow} className='ms-2' alt="Arrow" />
               </Button>
               <Button
+                onClick={handleLoginButtonClick}
                 sx={{
                   backgroundColor: "#FF6130",
                   display: 'flex',
