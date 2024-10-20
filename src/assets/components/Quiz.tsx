@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CustomButtons from "./CustomButtons";
 import AnswerDiv from "./AnswerDiv";
 
@@ -109,6 +109,11 @@ export const Quiz = () => {
     setIsCorrect(correct);
     setIsButtonDisabled(true);
     setShowAnswerDiv(true);
+
+    // Automatically proceed to the next question after 2 seconds
+    setTimeout(() => {
+      handleNext();
+    }, 2000);
   };
 
   const handleNext = () => {
@@ -191,7 +196,7 @@ export const Quiz = () => {
             ))}
           </div>
           {showAnswerDiv && (
-            <div className="mt-5">
+            <div className="mt-5 flex justify-center gap-5">
               <AnswerDiv
                 src={
                   isCorrect
@@ -199,12 +204,6 @@ export const Quiz = () => {
                     : "src/assets/images/incorrect.png"
                 }
                 className={isCorrect ? "bg-green-600" : "bg-red-600"}
-              />
-              <CustomButtons
-                name="Продолжи"
-                type="button"
-                onButtonClick={handleNext}
-                className="mt-5 bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300 px-10"
               />
             </div>
           )}
@@ -227,7 +226,7 @@ export const Quiz = () => {
             onButtonClick={() =>
               alert("Сертификатот ќе биде достапен наскоро!")
             }
-            className="bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300 px-10"
+            className="bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300 px-10 py-10"
           />
         </div>
       )}
@@ -236,3 +235,4 @@ export const Quiz = () => {
 };
 
 export default Quiz;
+
