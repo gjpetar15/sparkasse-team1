@@ -73,7 +73,7 @@ const WelcomeSection = () => {
                         <h1>{user.first_name}!</h1>
                     </div>
                 ) : (
-                    <h1>Добредојде {user.first_name}!</h1>
+                    <h1 className="text-[#212121] font-bold text-[48px]">Добредојде {user.first_name}!</h1>
                 )}
                 <div className="flex items-center space-x-4">
                     <div className="bg-blue-500 text-white p-4 rounded-lg max-w-xs self-baseline mt-7">

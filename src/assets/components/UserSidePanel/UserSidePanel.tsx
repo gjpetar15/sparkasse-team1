@@ -8,7 +8,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 const UserSidePanel = () => {
   return (
-    <div className="bg-[#F1F5F7] h-[calc(100vh-140px)] w-[373px] mt-14 rounded-r-xl pt-10 px-6 relative mr-8">
+    <div className="bg-[#F1F5F7] h-[calc(100vh-140px)] w-[373px] mt-14 rounded-r-xl pt-10 px-6 sticky top-12 mr-8">
       <div className="flex flex-col items-center">
         <img
           src="/src/assets/images/UserSideLogo.svg"
@@ -79,7 +79,7 @@ const UserSidePanel = () => {
                         className={`me-[14px]`} 
                         sx={{ color: isActive ? '#2870ED' : '#A2B6C9' }}
                     />
-                        <span>Штедомедар</span>
+                        <span>Штедомер</span>
                     </>
                 )}
                 </NavLink>
