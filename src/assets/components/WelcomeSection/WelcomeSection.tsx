@@ -60,7 +60,7 @@ const WelcomeSection = () => {
     const user = storedUser ? JSON.parse(storedUser) : defaultUser;
 
     useEffect(() => {
-        // setStartedCourse(dummyCourse);
+        setStartedCourse(dummyCourse);
         setRecommendedCourses(dummyCourses);
     }, []);
 
