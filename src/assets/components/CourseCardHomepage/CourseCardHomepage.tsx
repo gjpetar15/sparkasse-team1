@@ -14,19 +14,19 @@ const CourseCardHomepage: React.FC<CourseCardHomepageProps> = ({
   theme = 'green',
 }) => {
   const headerClasses = theme === 'purple' 
-    ? 'bg-purple-600 text-purple-100'
-    : 'bg-green-600 text-white';
+    ? 'bg-[#721c7a] text-purple-100'
+    : 'bg-[#02a3a4] text-white';
 
   const borderClasses = theme === 'purple' 
-    ? 'border-purple-600' 
-    : 'border-green-600';
+    ? 'border-[#721c7a]' 
+    : 'border-[#02a3a4]';
 
   const buttonClasses = theme === 'purple'
-    ? 'bg-purple-600 hover:bg-purple-700'
-    : 'bg-green-600 hover:bg-green-700';
+    ? 'bg-[#721c7a] hover:bg-[#5c165f]'
+    : 'bg-[#02a3a4] hover:bg-[#017e82]';
 
   return (
-    <div className="mb-8 w-full sm:w-1/2">
+    <div className="mb-8 w-full flex justify-center">
       <div className={`border-4 rounded-lg ${borderClasses}`}>
         {/* Header */}
         <div className={`p-2 ${headerClasses}`}>
@@ -34,12 +34,12 @@ const CourseCardHomepage: React.FC<CourseCardHomepageProps> = ({
         </div>
         {/* Body */}
         <div className="p-4">
-          <p className={`pt-3 pb-3 ${theme === 'green' ? 'text-green-700' : 'text-purple-700'}`}>
+          <p className={`pt-3 pb-3 ${theme === 'green' ? 'text-[#017e82]' : 'text-[#5c165f]'}`}>
             {description}
           </p>
           <a
             href="#"
-            className={`flex items-center justify-start ${buttonClasses} text-white h-10 rounded-md border border-black transition-colors duration-300 px-4`} // Dynamic width based on content
+            className={`flex items-center justify-start ${buttonClasses} w-fit text-white h-10 rounded-md transition-colors duration-300 px-4`} // Dynamic width based on content
           >
             {buttonText}
             <img src={arrow} className='ml-2' alt="Arrow" />

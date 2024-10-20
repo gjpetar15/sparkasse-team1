@@ -7,6 +7,7 @@ import IconsSection from "../../components/IconSection/IconSection";
 import CourseSectionHomepage from "../../components/CourseSectionHomepage/CourseSectionHomepage";
 import NumbersSection from "../../components/NumbersSection/NumbersSection";
 import SingleBannerSection from "../../components/SingleBannerSection/SingleBannerSection";
+import CarouselSection from "../../components/CarouselSection/CarouselSection";
 
 const HomePage = () => {
   return (
@@ -19,6 +20,7 @@ const HomePage = () => {
       <IconsSection />
       <NumbersSection />
       <SingleBannerSection />
+      <CarouselSection />
       <Footer />
     </div>
   );

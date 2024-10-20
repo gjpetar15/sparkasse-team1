@@ -5,12 +5,12 @@ const CourseSectionHomepage = () => {
     <section>
       <div className="container mx-auto mt-12 mb-8">
         <div className="text-center">
-          <h2 className="text-4xl font-bold text-[#FF6130] mb-5">
+          <h2 className="text-4xl font-bold text-[#FF6130] mb-10">
             Разгледај ги нашите курсеви.
           </h2>
         </div>
 
-        <div className="flex flex-wrap gap-8 mb-10 justify-center">
+        <div className="flex mb-10 justify-center px-52 gap-5">
           {/* First Course Card */}
           <CourseCardHomepage 
             title="НАУЧИ ЗА СЕБЕ."
