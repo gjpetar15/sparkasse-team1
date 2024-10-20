@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import SingleCourseDashboardProgressCard from '../SingleCourseDashboardProgressCard/SingleCourseDashboardProgressCard';
 import Button from '@mui/material/Button';
 import CourseCard from '../CourseCard/CourseCard';
+import CircularProgress from '@mui/material/CircularProgress';
+const WelcomeSection = (props: any) => {
+    const { user } = props;
 
-const WelcomeSection = () => {
-    const [isReturningUser, setIsReturningUser] = useState(true);
+    const [isReturningUser, setIsReturningUser] = useState(user.lastLoginAt ? true : false);
     const [startedCourse, setStartedCourse] = useState<any>(null);
     const [recommendedCourses, setRecommendedCourses] = useState<any>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const defaultUser = {
         first_name: "Томи",
@@ -28,7 +31,7 @@ const WelcomeSection = () => {
             name: "Лична финансиска гимнастика",
             short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
             total_lectures: 6,
-            passed_lectures: 2,
+            passed_lectures: 0,
             average_read_time_hours: 3,
             average_read_time_minutes: 35,
             explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
@@ -38,7 +41,7 @@ const WelcomeSection = () => {
             name: "Лична финансиска гимнастика",
             short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
             total_lectures: 6,
-            passed_lectures: 2,
+            passed_lectures: 0,
             average_read_time_hours: 3,
             average_read_time_minutes: 35,
             explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
@@ -48,7 +51,7 @@ const WelcomeSection = () => {
             name: "Лична финансиска гимнастика",
             short_description: "Научи ги основите на управувањето со пари – буџетирање, штедење и трошење, така што ќе си ја подобриш финансиската кондиција.",
             total_lectures: 6,
-            passed_lectures: 2,
+            passed_lectures: 0,
             average_read_time_hours: 3,
             average_read_time_minutes: 35,
             explenation: "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:",
@@ -56,12 +59,36 @@ const WelcomeSection = () => {
         }
     ];
 
-    const storedUser = localStorage.getItem('user');
-    const user = storedUser ? JSON.parse(storedUser) : defaultUser;
-
     useEffect(() => {
+        if (user.coursesInProgress.length > 0) {
+            setStartedCourse(user.coursesInProgress[0]);
+        } else {
+            const fetchData = async () => {
+                try {
+                  const response = await fetch("https://3bf7-31-11-74-166.ngrok-free.app/api/courses", {
+                      method: "GET",
+                      headers: {
+                          "Content-Type": "application/json",
+                          "Accept": "application/json",
+                          "ngrok-skip-browser-warning": "69420",
+                      }
+                  });
+          
+                  const responseData = (await response.json()).data.slice(0, 3);
+                  console.log(responseData);
+                  setRecommendedCourses(responseData);
+                } catch (error) {
+                    setRecommendedCourses(dummyCourses);
+                  console.error(error);
+                } finally {
+                  setIsLoaded(true);
+                }
+              };
+          
+              fetchData();
+        }
         // setStartedCourse(dummyCourse);
-        setRecommendedCourses(dummyCourses);
+        // setRecommendedCourses(dummyCourses);
     }, []);
 
     return (
@@ -70,10 +97,10 @@ const WelcomeSection = () => {
                 {isReturningUser ? (
                     <div className="text-[#212121] font-bold text-[48px]">
                         <h1>Добредојде назад,</h1>
-                        <h1>{user.first_name}!</h1>
+                        <h1>{user.name}!</h1>
                     </div>
                 ) : (
-                    <h1 className="text-[#212121] font-bold text-[48px]">Добредојде {user.first_name}!</h1>
+                    <h1 className="text-[#212121] font-bold text-[48px]">Добредојде {user.name}!</h1>
                 )}
                 <div className="flex items-center space-x-4">
                     <div className="bg-blue-500 text-white p-4 rounded-lg max-w-xs self-baseline mt-7">
@@ -90,7 +117,7 @@ const WelcomeSection = () => {
             {
                 startedCourse 
                     ? <SingleCourseDashboardProgressCard course={startedCourse} />
-                    : (
+                    : !isLoaded ? <div className='flex items-center justify-center'><CircularProgress /></div> : (
                         <>
                             <p className="text-2xl font-medium mb-6">Препорачано за тебе:</p>
                             <div className='w-full grid grid-cols-3 gap-[50px]'>

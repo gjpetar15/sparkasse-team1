@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import UserStatsCard from "../UserStatsCard/UserStatsCard";
 
-const UserStats = () => {
+const UserStats = (props: any) => {
+    const { user } = props;
 
     const [userStats, setUserStats] = useState<any>([]);
     const [userBadge, setUserBadge] = useState<any>({
@@ -12,13 +13,13 @@ const UserStats = () => {
         setUserStats([
             {
                 card_title: "Курсеви во тек.",
-                value: Math.floor(Math.random() * 10),
+                value: user.coursesInProgress.length,
                 show_extra_text: false,
                 color: "#721C7A"
             },
             {
                 card_title: "Завршени курсеви.",
-                value: Math.floor(Math.random() * 10),
+                value: user.completedCourses.length,
                 show_extra_text: false,
                 color: "#028661"
             },
@@ -30,7 +31,7 @@ const UserStats = () => {
             },
             {
                 card_title: "Освоено беџови.",
-                value: 1,
+                value: user.AllBadgesAchieved.length,
                 show_extra_text: false,
                 color: "#0CB43F"
             },

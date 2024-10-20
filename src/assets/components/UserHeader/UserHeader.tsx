@@ -1,6 +1,8 @@
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-const UserHeader = () => {
+const UserHeader = (props: any) => {
+  const { user } = props;
+
   return (
     <header className="bg-[#2870ED] h-[96px] w-screen text-white rounded-b-lg px-10">
       <div className="h-full flex justify-end items-center">
@@ -18,8 +20,8 @@ const UserHeader = () => {
                 className="h-[40px] w-[40px] rounded-xl border-[3px] border-[#004E6E] me-2"
             />
             <div>
-                <p className="text-[14px] font-bold">Име Презиме</p>
-                <p className="text-[10px] font-medium">Улога</p>
+                <p className="text-[14px] font-bold">{user.name || "Име Презиме"}</p>
+                <p className="text-[10px] font-medium">{user.lastAchievedBadge.name || ""}</p>
             </div>
         </div>
       </div>
