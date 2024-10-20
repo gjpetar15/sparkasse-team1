@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from 'react';
+import Chart from 'react-apexcharts';
+
+// Function to get chart options
+const getChartOptions = (series: number[], colors: string[]) => {
+    return {
+      series: series,
+      colors: colors,
+      chart: {
+        height: 320,
+        width: '100%',
+        type: 'donut',
+      },
+      stroke: {
+        colors: ['transparent'],
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '80%',
+          },
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        position: 'bottom',
+      },
+    };
+  };
 
 const AdminPageStatistics = () => {
-  return (
+    // Doughnut 1: 48% (bg-[#2870ED]), 52% (bg-[#EB4C79])
+  const chart1Options = getChartOptions([48, 52], ['#2870ED', '#EB4C79']);
+
+  // Doughnut 2: 20% (bg-[#0CB43F]), 47% (bg-[#245375]), 16% (bg-[#FF6130]), 9% (bg-[#02A3A4]), 8% (bg-[#0050A7])
+  const chart2Options = getChartOptions([20, 47, 16, 9, 8], ['#0CB43F', '#245375', '#FF6130', '#02A3A4', '#0050A7']);
+
+  // Doughnut 3: 59% (bg-[#0CB43F]), 17% (bg-[#721C7A]), 9% (bg-[#FF6130]), 7% (bg-[#028661]), 7% (bg-[#0050A7])
+  const chart3Options = getChartOptions([59, 17, 9, 7, 7], ['#0CB43F', '#721C7A', '#FF6130', '#028661', '#0050A7']);
+
+  // Doughnut 4: 64% (bg-[#0050A7]), 36% (bg-[#EB4C79])
+  const chart4Options = getChartOptions([64, 36], ['#0050A7', '#EB4C79']);
+
+    return (
     <div className="">
       <div className="flex px-auto py-10 justify-end items-end top-0 right-0 absolute">
         <div className="flex gap-[46px] pr-10">
@@ -317,6 +359,43 @@ const AdminPageStatistics = () => {
                         </div>
                         <button className="bg-[#E4EAF0] text-[#0050A7]">Превземи во Excel</button>
                     </div>
+                    {/* <TrafficChart /> */}
+                    {/* <div className="max-w-sm w-full bg-white rounded-lg shadow p-6">
+                        <div className="py-6">
+                            <Chart options={chartOptions} series={chartOptions.series} type="donut" height={320} />
+                        </div>
+                    </div> */}
+                    {/* First Doughnut */}
+      <div className="max-w-sm w-full bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-bold text-gray-900">Doughnut Chart 1</h2>
+        <div className="py-6">
+          <Chart options={chart1Options} series={chart1Options.series} type="donut" height={320} />
+        </div>
+      </div>
+
+      {/* Second Doughnut */}
+      <div className="max-w-sm w-full bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-bold text-gray-900">Doughnut Chart 2</h2>
+        <div className="py-6">
+          <Chart options={chart2Options} series={chart2Options.series} type="donut" height={320} />
+        </div>
+      </div>
+
+      {/* Third Doughnut */}
+      <div className="max-w-sm w-full bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-bold text-gray-900">Doughnut Chart 3</h2>
+        <div className="py-6">
+          <Chart options={chart3Options} series={chart3Options.series} type="donut" height={320} />
+        </div>
+      </div>
+
+      {/* Fourth Doughnut */}
+      <div className="max-w-sm w-full bg-white rounded-lg shadow p-6">
+        <h2 className="text-xl font-bold text-gray-900">Doughnut Chart 4</h2>
+        <div className="py-6">
+          <Chart options={chart4Options} series={chart4Options.series} type="donut" height={320} />
+        </div>
+      </div>
                 </div>
             </div>
         </div>
