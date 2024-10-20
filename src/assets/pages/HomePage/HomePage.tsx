@@ -7,9 +7,9 @@ const HomePage = () => {
   return (
     <>
       <HomepageHeader />
-      <HeroSectionHomepage />
+      {/* <HeroSectionHomepage />
       <GridSectionHomepage />
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

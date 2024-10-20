@@ -1,38 +1,80 @@
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import Button from '@mui/material/Button';
+import logo from '/src/assets/Images/VibeOn_NewLogo.svg'; // Update the path as necessary
+import arrow from '/src/assets/Images/Arrow_right.svg'; // Update the path as necessary
+import { Link } from 'react-router-dom';
 
 const HomepageHeader = () => {
   return (
-    <header className="absolute z-2 w-full">
-      <div className="container mx-auto mt-4 px-4">
-        <nav className="bg-blue-600 border-2 border-white rounded-lg p-0">
-          <ul className="flex justify-between items-center">
-            <li className="ml-10">
-              <img src="logo.png" alt="Logo" className="w-14 h-20" />
-            </li>
-            <li className="flex space-x-8">
-              <a href="#" className="text-white text-lg">
-                Home
-              </a>
-              <a href="#" className="text-white text-lg">
-                About
-              </a>
-              <a href="#" className="text-white text-lg">
-                Services
-              </a>
-              <a href="#" className="text-white text-lg">
-                Contact
-              </a>
-            </li>
-            <div className="flex space-x-4">
-              <PrimaryButton />
-              {/* <button className="border border-black px-4 py-2 rounded text-black">
-                Login
-              </button> */}
-              <button className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-400">
-                Sign Up
-              </button>
+    <header className="absolute w-full flex justify-center">
+      <div className="container mx-auto mt-8">
+        <nav className="bg-blue-600 border-2 border-white rounded-lg">
+          <div className="flex justify-between items-center p-4">
+            {/* Left side logo */}
+            <a href="#" className="ml-10">
+              <img src={logo} alt="Logo" className="w-16 h-auto ps-2" />
+            </a>
+            {/* Navbar content */}
+            <div className="flex justify-center" id="navbarNav">
+              {/* Centered Menu */}
+              <ul className="flex space-x-[80px]">
+                <li>
+                  <Link to="#" className="text-white text-[16px] hover:underline hover:text-white">Почетна</Link>
+                </li>
+                <li>
+                  <Link to="#" className="text-white text-[16px] hover:underline hover:text-white">Курсеви</Link>
+                </li>
+                <li>
+                  <Link to="#" className="text-white text-[16px] hover:underline hover:text-white">VibeOn Edu</Link>
+                </li>
+                <li>
+                  <Link to="#" className="text-white text-[16px] hover:underline hover:text-white">Шпаркасе Банка</Link>
+                </li>
+                <li>
+                  <Link to="#" className="text-white text-[16px] hover:underline hover:text-white">Контакт</Link>
+                </li>
+              </ul>
             </div>
-          </ul>
+            {/* Right side buttons */}
+            <div className="flex space-x-5 mr-10">
+              <Button
+                sx={{
+                  backgroundColor: "#FF6130",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FFFFFF',
+                  height: '40px',
+                  textTransform: 'none',
+                  padding: '16px 24px',
+                  borderRadius: '4px',
+                  border: '1px solid #000000',
+                  '&:hover': {
+                    backgroundColor: '#d34f26',
+                  },
+                }}
+              >
+                Регистрација
+                <img src={arrow} className='ms-2' alt="Arrow" />
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: "#FF6130",
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: '#FFFFFF',
+                  height: '40px',
+                  textTransform: 'none',
+                  padding: '16px 24px',
+                  borderRadius: '4px',
+                  '&:hover': {
+                    backgroundColor: '#d34f26',
+                  },
+                }}
+              >
+                Најава
+                <img src={arrow} className='ms-2' alt="Arrow" />
+              </Button>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
