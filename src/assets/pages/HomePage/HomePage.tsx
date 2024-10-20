@@ -7,8 +7,8 @@ const HomePage = () => {
   return (
     <div className="min-h-dvh w-vw">
       <HomepageHeader />
-      {/* <HeroSectionHomepage />
-      <GridSectionHomepage /> */}
+      <HeroSectionHomepage />
+      <GridSectionHomepage />
       <Footer />
     </div>
   );

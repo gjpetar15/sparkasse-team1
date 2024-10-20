@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const HomepageHeader = () => {
   return (
     <header className="absolute w-full flex justify-center">
-      <div className="container mx-auto mt-8">
+      <div className="w-full px-20 mt-8"> {/* Use px-20 directly to match hero section */}
         <nav className="bg-blue-600 border-2 border-white rounded-lg">
           <div className="flex justify-between items-center p-4">
             {/* Left side logo */}
