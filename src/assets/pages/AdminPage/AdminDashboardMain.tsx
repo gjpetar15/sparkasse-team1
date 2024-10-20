@@ -49,8 +49,10 @@ const AdminPageMain = () => {
                             <div className="text-[#0050A7] text-xl">
                                 Активни корисници
                             </div>
-                            <img className="h-[174px] w-72 mt-5" src="./src/assets/images/AktivniKorisniciGraph.png" alt="" />
-                            <a href="" className="bg-[#E4EAF0] text-[#0050A7] text-sm p-4 rounded-xl mt-10">Превземи целосна листа</a>
+                            <img className="h-36 w-72 mt-5" src="./src/assets/images/AktivniKorisniciGraph.png" alt="" />
+                            <div className="flex">
+                                <a href="" className="bg-[#E4EAF0] text-[#0050A7] text-sm p-4 rounded-xl mt-1">Превземи целосна листа</a>
+                            </div>
                         </div>
                         <div className="text-[#0050A7] bg-[#F1F5F7] p-5 w-[70%] space-y-14 rounded-xl">
                             <div className="text-3xl">
