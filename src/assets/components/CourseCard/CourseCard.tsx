@@ -9,6 +9,8 @@ const CourseCard = (props: any) => {
     const { course } = props;
     const [dialogOpen, setDialogOpen] = useState(false);
 
+    const totalLectures = course.lectures.length;
+
     const handleDialogClose = () => {
         setDialogOpen(false);
     }
@@ -21,7 +23,7 @@ const CourseCard = (props: any) => {
                         color: '#FFFFFF'
                     }}/>
                 </div>
-                <span className='text-base font-bold'>{course.name}</span>
+                <span className='text-base font-bold'>{course.courseName}</span>
             </div>
             <div className='my-[60px]'>
                 <div className='flex items-center text-sm font-normal mt-2'>
@@ -31,11 +33,11 @@ const CourseCard = (props: any) => {
                             className='me-1'
                             sx={{ color: '#FF6130' }}
                         />
-                        <span className='mb-1 text-sm'>Вкупно лекции : {course.total_lectures}</span>
+                        <span className='mb-1 text-sm'>Вкупно лекции : {totalLectures}</span>
                     </div>
                     <div className='flex items-center me-6'>
                         <img src="/src/assets/images/BlueClosedBook.svg" className='me-1 w-5 h-5'/>
-                        <span className='mb-1 text-sm'>Преостанати лекции : {course.total_lectures - course.passed_lectures}</span>
+                        <span className='mb-1 text-sm'>Преостанати лекции : {totalLectures}</span>
                     </div>
                 </div>
                 <div className='flex items-center mt-2'>
@@ -44,7 +46,7 @@ const CourseCard = (props: any) => {
                         className='me-1'
                         sx={{ color: '#FF6130' }}
                     />
-                    <span className='mb-1 text-sm'>Просечно време на читање : {course.average_read_time_hours}ч {course.average_read_time_minutes}мин</span>
+                    <span className='mb-1 text-sm'>Просечно време на читање : 3ч 35мин</span>
                 </div>
             </div>
             <div className="flex justify-between">

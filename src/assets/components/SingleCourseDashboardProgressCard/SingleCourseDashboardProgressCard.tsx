@@ -7,7 +7,9 @@ import Button from '@mui/material/Button';
 const SingleCourseDashboardProgressCard = (props: any) => {
     const { course } = props;
 
-    const totalCoursesPassedPercantage = (course.passed_lectures / course.total_lectures) * 100;
+    const totalLectures = course.lectures.length;
+
+    const totalCoursesPassedPercantage = (2 / totalLectures) * 100;
 
     return (
         <div>
@@ -19,7 +21,7 @@ const SingleCourseDashboardProgressCard = (props: any) => {
                     </div>
                     <span>{course.name}</span>
                 </div>
-                <p className="text-base mt-4 mb-20">{course.short_description}</p>
+                <p className="text-base mt-4 mb-20">{course.description}</p>
                 <div className='flex flex-col mb-5'>
                     <span className='self-end text-[#2870ED] font-bold text-[14px] mb-2'>{totalCoursesPassedPercantage.toFixed(0)}%</span>
                     <Slider
@@ -47,11 +49,11 @@ const SingleCourseDashboardProgressCard = (props: any) => {
                                 className='me-1'
                                 sx={{ color: '#FF6130' }}
                             />
-                            <span className='mb-1'>Вкупно лекции : {course.total_lectures}</span>
+                            <span className='mb-1'>Вкупно лекции : {totalLectures}</span>
                         </div>
                         <div className='flex items-center me-6'>
                             <img src="/src/assets/images/ClosedBook.svg" className='me-1'/>
-                            <span className='mb-1'>Преостанати лекции : {course.total_lectures - course.passed_lectures}</span>
+                            <span className='mb-1'>Преостанати лекции : {totalLectures - 2}</span>
                         </div>
                         <div className='flex items-center'>
                             <SchoolOutlinedIcon
@@ -59,7 +61,7 @@ const SingleCourseDashboardProgressCard = (props: any) => {
                                 className='me-1'
                                 sx={{ color: '#FF6130' }}
                             />
-                            <span className='mb-1'>Просечно време на читање : {course.average_read_time_hours}ч{course.average_read_time_minutes}мин</span>
+                            <span className='mb-1'>Просечно време на читање : 3ч35мин</span>
                         </div>
                     </div>
                 </div>

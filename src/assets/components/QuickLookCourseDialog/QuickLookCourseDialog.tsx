@@ -18,6 +18,8 @@ const QuickLookCourseDialog = (props: any) => {
     const { course, open, handleClose } = props;
     const [lectures, setLectures] = React.useState<any[]>([]);
 
+    const explenation = "Во овој курс ќе ги истражите основните концепти на управувањето со личните финанси, вклучувајќи:";
+
     const calculatedReadTime = () => {
         const hours = course.average_read_time_hours;
         const minutes = course.average_read_time_minutes;
@@ -29,36 +31,36 @@ const QuickLookCourseDialog = (props: any) => {
         }
     }
 
-    React.useEffect(() => {
-        const lectures = [
-            {
-                name: "Буџетирање",
-                duration: "1ч 30мин"
-            },
-            {
-                name: "Штедење",
-                duration: "1ч 30мин"
-            },
-            {
-                name: "Трошење",
-                duration: "1ч 30мин"
-            },
-            {
-                name: "Инвестиции",
-                duration: "1ч 30мин"
-            },
-            {
-                name: "Заеми",
-                duration: "1ч 30мин"
-            },
-            {
-                name: "Даноци",
-                duration: "1ч 30мин"
-            }
-        ];
+    // React.useEffect(() => {
+    //     // const lectures = [
+    //     //     {
+    //     //         name: "Буџетирање",
+    //     //         duration: "1ч 30мин"
+    //     //     },
+    //     //     {
+    //     //         name: "Штедење",
+    //     //         duration: "1ч 30мин"
+    //     //     },
+    //     //     {
+    //     //         name: "Трошење",
+    //     //         duration: "1ч 30мин"
+    //     //     },
+    //     //     {
+    //     //         name: "Инвестиции",
+    //     //         duration: "1ч 30мин"
+    //     //     },
+    //     //     {
+    //     //         name: "Заеми",
+    //     //         duration: "1ч 30мин"
+    //     //     },
+    //     //     {
+    //     //         name: "Даноци",
+    //     //         duration: "1ч 30мин"
+    //     //     }
+    //     // ];
 
-        setLectures(lectures);
-    }, []);
+    //     setLectures(course.lec);
+    // }, []);
 
     return (
         <Dialog
@@ -74,8 +76,8 @@ const QuickLookCourseDialog = (props: any) => {
             <div className='p-10'>
                 <div className="w-full h-[250px] bg-[#2870ED] ps-10 rounded-lg flex items-center">
                     <div>
-                        <p className='text-lg font-bold text-white mb-2'>{course.name}</p>
-                        <p className='text-base font-normal text-white text-wrap'>{course.short_description}</p>
+                        <p className='text-lg font-bold text-white mb-2'>{course.courseName}</p>
+                        <p className='text-base font-normal text-white text-wrap'>{course.description}</p>
                     </div>
                     <img className='ms-auto' src="/src/assets/images/QuickLookCourseDialog.png"/>
                 </div>
@@ -84,20 +86,20 @@ const QuickLookCourseDialog = (props: any) => {
                         <span>За курсот</span>
                     </div>
                     <div className='m-10'>
-                        <p className='text-[24px] font-normal leading-[24px] mb-6'>{course.explenation}</p>
+                        <p className='text-[24px] font-normal leading-[24px] mb-6'>{explenation}</p>
                         <div>
-                            <b>Време на читање:</b>
-                            <span> {calculatedReadTime()}</span>
+                            <b>Време на читање: </b>
+                            <span>4</span>
                         </div>
                         <div>
                             <b>Вкупно лекции:</b>
-                            <span> {course.total_lectures} лекции</span>
+                            <span> {course.lectures.length} лекции</span>
                         </div>
                         <div className='px-10 mt-6'>
-                            {lectures.map((lecture, index) => (
-                                <div key={lecture.name + index} className='flex items-center mb-4'>
+                            {course.lectures.map((lecture, index) => (
+                                <div key={lecture.lectureName + index} className='flex items-center mb-4'>
                                     <span className='w-[29px] h-[33px] bg-[#721C7A] text-white text-lg rounded text-center pt-[2px] me-8'>{index}</span>
-                                    <span>{lecture.name}</span>
+                                    <span>{lecture.lectureName}</span>
                                 </div>
                             ))}
                         </div>
