@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CustomButtons from "./CustomButtons";
+import { API_URL } from "../../constants";
 
 const MultiStepRegistration = () => {
   const [step, setStep] = useState(1);
@@ -30,9 +31,27 @@ const MultiStepRegistration = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleNextClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const checkEmailInDb = async () => {
+    const response = await fetch(`${API_URL}/check-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "ngrok-skip-browser-warning": "true"
+      },
+      body: JSON.stringify({
+        name: formData.userName,
+        surname: formData.lastName,
+        email: formData.email
+      }),
+    });
+    return response
+  };
+
+  const handleNextClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (validateStep()) {
+    console.log("Step: ", step);
+    if (await validateStep()) {
+      console.log(formData)
       setErrorMessage("");
       setStep((prevState) => prevState + 1);
     }
@@ -52,9 +71,44 @@ const MultiStepRegistration = () => {
     setStep((prevState) => prevState + 1);
   };
 
-  const validateStep = () => {
+  const registerUser = async () => {
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "ngrok-skip-browser-warning": "true"
+        },
+        body: JSON.stringify({
+          name: formData.userName,
+          surname: formData.lastName,
+          email: formData.email,
+          gender: formData.gender,
+          birth_date: formData.birthDate,
+          phone: formData.phoneNumber,
+          password: formData.password
+        }),
+      });
+
+      console.log(response)
+      return response;
+    }
+    catch (error) {
+      console.error("Error registering user: ", error);
+      setErrorMessage("Error registering user");
+      return null;
+    }
+  };
+
+  const validateStep = async () => {
     switch (step) {
       case 1:
+        const response = await checkEmailInDb();
+        if (response.status === 409) {
+          setErrorMessage("Email already exists.");
+          return false;
+        }
         if (!formData.userName || !formData.lastName || !formData.email) {
           setErrorMessage("All fields are required.");
           return false;
@@ -81,6 +135,13 @@ const MultiStepRegistration = () => {
           return false;
         }
         break;
+      case 5:
+        const res = await registerUser();
+        console.log(res);
+        if (!res) {
+          setErrorMessage("Error registering user");
+          return false;
+        }
       default:
         break;
     }
@@ -344,7 +405,7 @@ const MultiStepRegistration = () => {
             <CustomButtons
               name={getButtonText()}
               type="button"
-              onButtonClick={handleFinalSubmit}
+              onButtonClick={handleNextClick}
               className="w-full bg-[#F97316] text-white py-2 rounded-lg hover:bg-orange-600 transition duration-300"
             />
           </div>

@@ -14,11 +14,12 @@ const SignIn = () => {
     e.preventDefault();
     try {
       // Tuka Fetch na sign in api
-      const response = await fetch("https://9690-31-11-83-108.ngrok-free.app/api/login", {
+      const response = await fetch("https://3bf7-31-11-74-166.ngrok-free.app/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
+          "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify(formData),
       });
@@ -127,7 +128,7 @@ const SignIn = () => {
           </div>
           <p className="mt-4 text-white">
             Доколку си нов корисник,{" "}
-            <Link to="/register" className="text-[#F97316]">
+            <Link to="/registration" className="text-[#F97316]">
               регистрирај се.
             </Link>
           </p>
