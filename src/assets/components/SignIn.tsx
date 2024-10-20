@@ -13,21 +13,41 @@ const SignIn = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Using Fetch API to connect to backend
-      const response = await fetch("https://api.example.com/signin", {
+      // Tuka Fetch na sign in api
+      const response = await fetch("https://9690-31-11-83-108.ngrok-free.app/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
+      console.log(response.token);
+
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+ 
+      console.log(response);
+      
+    
+    if (response.status === 200) {
+      // window.location.href = "/quiz";
+    } else {
+      // setErrorMessage("Invalid email or password");
+    }
+      console.log(window.location.href);
+      // const token = response.headers.get("Authorization");
+      // if (token) {
+      //   // Navigate to the user dashboard
+      //   window.location.href = "/quiz";
+      // } else {
+      //   throw new Error("Invalid token");
+      // }
 
       const data = await response.json();
-      console.log("Success: ", data);
+      console.log("Success: ", data.token);
       // You can handle successful sign-in here, like saving a token or redirecting
     } catch (error) {
       console.error("Error signing in: ", error);
